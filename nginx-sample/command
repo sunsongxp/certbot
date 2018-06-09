@@ -1,0 +1,15 @@
+mkdir ssl
+cp ../etc/letsencrypt/live/sloppysun.com/fullchain.pem ./ssl/server.crt
+cp ../etc/letsencrypt/live/sloppysun.com/privkey.pem  ./ssl/server.key
+
+if [ ! -f ./ssl/dhparam.pem ]; then
+  openssl dhparam -out ./ssl/dhparam.pem 2048
+fi
+
+docker run \
+  --name nginx \
+  -v $(pwd)/nginx.conf:/etc/nginx/conf.d/default.conf:ro \
+  -v $(pwd)/ssl:/etc/nginx/ssl:ro \
+  -p 443:443 \
+  -p 80:80 \
+  -d nginx:latest
