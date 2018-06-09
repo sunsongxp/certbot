@@ -9,6 +9,18 @@
 ```
 docker build . -t certbot/certbot:cloudflare
 chmod +x command
+```
+
+4. Run the command to get certificate & key for your domain
+```
+./command
+```
+
+5. The keys will be located in `etc/letsencrypt`
+
+## Run Nginx Server as Sample
+```
+cd nginx-sample
 ./command
 ```
 
