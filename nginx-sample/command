@@ -8,6 +8,7 @@ fi
 
 docker run \
   --name nginx \
+  --restart always \
   -v $(pwd)/nginx.conf:/etc/nginx/conf.d/default.conf:ro \
   -v $(pwd)/ssl:/etc/nginx/ssl:ro \
   -p 443:443 \
